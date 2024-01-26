@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-msemploye-service
+spec:
+  selector:
+    app: springboot-msemploye
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 1020
+  type: LoadBalancer

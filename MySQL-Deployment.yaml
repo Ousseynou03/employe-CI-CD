@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-employe-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-employe
+  template:
+    metadata:
+      labels:
+        app: mysql-employe
+    spec:
+      containers:
+        - name: mysql-employe
+          image: mysql:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "dione1234"
+            - name: MYSQL_DATABASE
+              value: "ms_employe"
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-employe-pv-storage
+              mountPath: "/var/lib/mysql"
+      volumes:
+        - name: mysql-employe-pv-storage
+          persistentVolumeClaim:
+            claimName: mysql-employe-pvc

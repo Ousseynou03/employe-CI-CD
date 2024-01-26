@@ -33,9 +33,7 @@ services:
 
   springboot-msproduct:
     container_name: springboot-msemploye-container
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: dioneousseynou/employe-ci-cd:latest
     ports:
       - '1020:1020'
     environment:

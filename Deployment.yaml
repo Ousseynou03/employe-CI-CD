@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-msemploye-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-msemploye
+  template:
+    metadata:
+      labels:
+        app: springboot-msemploye
+    spec:
+      containers:
+        - name: springboot-msemploye
+          image: dioneousseynou/employe-image:latest
+          ports:
+            - containerPort: 1020
+          env:
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://springboot-msemploye-service:3306/ms_employe?createDatabaseIfNotExist=true"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "dione1234"
+            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+              value: "com.mysql.cj.jdbc.Driver"
