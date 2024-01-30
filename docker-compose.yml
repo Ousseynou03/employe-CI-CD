@@ -33,7 +33,7 @@ services:
 
   springboot-msproduct:
     container_name: springboot-msemploye-container
-    image: dioneousseynou/employe-ci-cd:latest
+    image: dioneousseynou/java-spring:v1
     ports:
       - '1020:1020'
     environment:
