@@ -16,7 +16,7 @@ services:
 
 
   php-myadmin-mundia:
-    container_name: phpmyadmin-employe
+    container_name: phpmyadmin-employe-0
     depends_on:
       - mysql-employe
     image: phpmyadmin/phpmyadmin
