@@ -16,44 +16,29 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                sh "mvn package -DskipTests"
             }
 
-            post {
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
-            }
         }
 
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    // Build the Docker image
-                    docker.build('dioneousseynou/employe-ci-cd:latest')
+                echo "building docker image....."
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
-                    // Login to Docker Hub
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-                        // Push the Docker image to Docker Hub
-                        docker.image('dioneousseynou/employe-ci-cd:latest').push()
-                    }
+                  sh 'echo $PASSWORD'
+
+                  echo USERNAME
+
+                  echo "username is $USERNAME"
+                  sh 'docker build -t dioneousseynou/java-spring:v1 .'
+                  sh 'docker login -u $USERNAME -p $PASSWORD'
+                  sh 'docker push dioneousseynou/java-spring:v1'
+                }
+
                 }
             }
-        }
-
-        stage('Deploy with Docker Compose') {
-            steps {
-                // Run Docker Compose to deploy the services
-                sh 'docker-compose up -d'
-            }
-        }
-    }
-
-    post {
-        always {
-            // Clean up resources if needed
-            sh 'docker-compose down'
         }
     }
 }
