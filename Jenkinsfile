@@ -32,7 +32,7 @@ pipeline {
                   echo USERNAME
 
                   echo "username is $USERNAME"
-                  sh 'docker --version'
+                  sh 'jenkins-docker --version'
                  // sh 'docker ps'
                  // sh 'docker build -t dioneousseynou/java-spring:v1 .'
                  // sh 'echo $PASSWORD |docker login -u $USERNAME --password-stdin'
