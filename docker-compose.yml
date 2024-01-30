@@ -32,7 +32,7 @@ services:
 
 
   springboot-msproduct:
-    container_name: springboot-msemploye-container
+    container_name: springboot-msemploye-container-0
     image: dioneousseynou/java-spring:v1
     ports:
       - '1020:1020'
