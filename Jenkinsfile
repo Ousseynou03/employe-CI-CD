@@ -37,6 +37,7 @@ pipeline {
                   sh '/usr/local/bin/docker build -t dioneousseynou/java-spring:v1 .'
                   sh 'echo $PASSWORD |/usr/local/bin/docker login -u $USERNAME --password-stdin'
                   sh '/usr/local/bin/docker push dioneousseynou/java-spring:v1'
+                  sh '/usr/local/docker compose -d up'
                 }
 
                 }
