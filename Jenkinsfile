@@ -33,10 +33,10 @@ pipeline {
 
                   echo "username is $USERNAME"
                   sh '/usr/local/bin/docker --version'
-                 // sh 'docker ps'
-                 // sh 'docker build -t dioneousseynou/java-spring:v1 .'
-                 // sh 'echo $PASSWORD |docker login -u $USERNAME --password-stdin'
-                 // sh 'docker push dioneousseynou/java-spring:v1'
+                  sh '/usr/local/bin/docker ps'
+                  sh '/usr/local/bin/docker build -t dioneousseynou/java-spring:v1 .'
+                  sh 'echo $PASSWORD |/usr/local/bin/docker login -u $USERNAME --password-stdin'
+                  sh '/usr/local/bin/docker push dioneousseynou/java-spring:v1'
                 }
 
                 }
