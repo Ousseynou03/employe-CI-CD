@@ -29,10 +29,10 @@ public class EmployeController {
         return iEmployeService.add(employeRequest);
     }
 
-   // @GetMapping("/{id}")
-  //  public EmployeResponse getEmployeById(@PathVariable("id") Long id){
-  //      return iEmployeService.getEmployeById(id);
-  //  }
+    @GetMapping("/{id}")
+    public EmployeResponse getEmployeById(@PathVariable("id") Long id){
+        return iEmployeService.getEmployeById(id);
+    }
     
 
     @GetMapping("/")
