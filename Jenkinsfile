@@ -7,13 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Get some code from a GitHub repository
-                git branch: 'develop', url: 'https://github.com/Ousseynou03/employe-CI-CD.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 sh "mvn package -DskipTests"
